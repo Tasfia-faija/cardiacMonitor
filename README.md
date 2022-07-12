@@ -1,4 +1,4 @@
-# cardiac_Recorder
+# cardiacMonitor
 ***
 
 This is a useful application to every human who keeps record of his/her systolic and diastolic pressure as well as heart rate for maintaining healthy and sound life.
