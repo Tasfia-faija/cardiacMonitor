@@ -22,6 +22,7 @@ public class AddActivity extends AppCompatActivity {
         diastolic_input = findViewById(R.id.diastolicValue);
         heartrate_input = findViewById(R.id.heartRateValue);
         comment_input = findViewById(R.id.commentValue);
+        save_button = findViewById(R.id.addButton);
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
