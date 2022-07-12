@@ -1,8 +1,10 @@
 package com.eimu.cardiacmonitor;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -27,9 +29,10 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-       String query = "CREATE TABLE " + TABLE_NAME + " (" + COLUMN_ID + " INTEGER PRIMRAY KEY AUTOINCREMENT, "+
+       String query = "CREATE TABLE " + TABLE_NAME +
+                                " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "+
                                 COLUMN_DATE_MEASURE + " TEXT, "+
-                                COLUMN_TIME_MEASURE + " TEXT "+
+                                COLUMN_TIME_MEASURE + " TEXT, "+
                                 COLUMN_SYSTOLIC + " TEXT, " +
                                 COLUMN_DIASTOLIC + " TEXT, "+
                                 COLUMN_HEART_RATE + " TEXT ," +
@@ -41,5 +44,23 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
+    }
+
+    void patientRecord(String date, String time, String systolic, String diastolic, String heart_rate, String comment){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+
+        cv.put(COLUMN_DATE_MEASURE, date);
+        cv.put(COLUMN_TIME_MEASURE, time);
+        cv.put(COLUMN_SYSTOLIC, systolic);
+        cv.put(COLUMN_DIASTOLIC, diastolic);
+        cv.put(COLUMN_HEART_RATE, heart_rate);
+        cv.put(COLUMN_COMMENT, comment);
+        long result  = db.insert(TABLE_NAME,null, cv);
+        if(result == -1) {
+            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Added Sucessfully", Toast.LENGTH_SHORT).show();
+        }
     }
 }
