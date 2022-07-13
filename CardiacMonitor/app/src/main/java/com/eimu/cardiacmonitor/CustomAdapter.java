@@ -6,7 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
+//import androidx.annotation.NonNull;
+//import androidx.recyclerview.widget.RecyclerView;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -26,16 +28,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     }
 
 
-    @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.patientsdata_row, parent, false);
         return  new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.data_date_txt.setText(String.valueOf(data_date.get(position)));
         holder.data_systolic_txt.setText(String.valueOf(data_systolic.get(position)));
         holder.data_diastolic_txt.setText(String.valueOf(data_diastolic.get(position)));
@@ -51,7 +52,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
         TextView  data_date_txt,data_systolic_txt,data_diastolic_txt,data_heartrate_txt;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(View itemView) {
             super(itemView);
             data_date_txt = itemView.findViewById(R.id.data_date_txt);
             data_systolic_txt = itemView.findViewById(R.id.data_systolic_txt);
