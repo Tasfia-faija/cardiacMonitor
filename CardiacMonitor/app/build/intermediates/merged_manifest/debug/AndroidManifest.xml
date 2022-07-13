@@ -21,11 +21,17 @@
         android:testOnly="true"
         android:theme="@style/Theme.CardiacMonitor" >
         <activity
-            android:name="com.eimu.cardiacmonitor.AddActivity"
-            android:exported="false"
-            android:parentActivityName="com.eimu.cardiacmonitor.MainActivity" />
+            android:name="com.eimu.cardiacmonitor.activity.ViewActivity"
+            android:exported="false" />
         <activity
-            android:name="com.eimu.cardiacmonitor.MainActivity"
+            android:name="com.eimu.cardiacmonitor.activity.UpdateActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.eimu.cardiacmonitor.activity.AddActivity"
+            android:exported="false"
+            android:parentActivityName="com.eimu.cardiacmonitor.activity.MainActivity" />
+        <activity
+            android:name="com.eimu.cardiacmonitor.activity.MainActivity"
             android:exported="false" />
         <activity
             android:name="com.eimu.cardiacmonitor.SplashScreen"

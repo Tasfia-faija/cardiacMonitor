@@ -14,14 +14,17 @@
         android:theme="@style/Theme.CardiacMonitor"
         tools:targetApi="31">
         <activity
-            android:name=".UpdateActivity"
+            android:name=".activity.ViewActivity"
             android:exported="false" />
         <activity
-            android:name=".AddActivity"
-            android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:name=".activity.UpdateActivity"
+            android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.AddActivity"
+            android:exported="false"
+            android:parentActivityName=".activity.MainActivity" />
+        <activity
+            android:name=".activity.MainActivity"
             android:exported="false" />
         <activity
             android:name=".SplashScreen"

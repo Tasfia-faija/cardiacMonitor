@@ -1,4 +1,4 @@
-package com.eimu.cardiacmonitor;
+package com.eimu.cardiacmonitor.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,10 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Toast;
 
+import com.eimu.cardiacmonitor.adapter.CustomAdapter;
+import com.eimu.cardiacmonitor.MyDatabaseHelper;
+import com.eimu.cardiacmonitor.R;
+import com.eimu.cardiacmonitor.model.CardiacModel;
+import com.eimu.cardiacmonitor.model.IClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -21,7 +25,7 @@ public class  MainActivity extends AppCompatActivity {
     FloatingActionButton add_button;
 
     MyDatabaseHelper myDB;
-    ArrayList<String> data_id, data_date, data_time,data_systolic,data_diastolic,data_heartrate,data_comment;
+    ArrayList<CardiacModel> data;
      CustomAdapter customAdapter;
 
     @Override
@@ -31,30 +35,25 @@ public class  MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycleview);
         add_button = findViewById(R.id.add_button);
-        add_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent  = new Intent(MainActivity.this, AddActivity.class);
-                startActivity(intent);
-            }
+        add_button.setOnClickListener(view -> {
+            Intent intent  = new Intent(MainActivity.this, AddActivity.class);
+            startActivity(intent);
         });
 
         myDB = new MyDatabaseHelper(MainActivity.this);
-        data_id = new ArrayList<>();
-        data_date = new ArrayList<>();
-        data_time = new ArrayList<>();
-        data_systolic = new ArrayList<>();
-        data_diastolic = new ArrayList<>();
-        data_heartrate = new ArrayList<>();
-        data_comment = new ArrayList<>();
+        data = new ArrayList<>();
 
         storeDataInArrays();
 
-        customAdapter = new CustomAdapter(MainActivity.this, data_date,data_systolic,data_diastolic,data_heartrate);
+        customAdapter = new CustomAdapter(data);
+        customAdapter.setListener(model -> {
+            //todo do something here
+            Intent intent = new Intent(MainActivity.this, ViewActivity.class);
+            intent.putExtra(ViewActivity.CARDIAC_MODEL , model);
+            startActivity(intent);
+        });
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
-
-
     }
 
     void  storeDataInArrays(){
@@ -63,13 +62,15 @@ public class  MainActivity extends AppCompatActivity {
             Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show();
         }else{
             while (cursor.moveToNext()){
-                data_id.add(cursor.getString(0));
-                data_date.add(cursor.getString(1));
-                data_time.add(cursor.getString(2));
-                data_systolic.add(cursor.getString(3));
-                data_diastolic.add(cursor.getString(4));
-                data_heartrate.add(cursor.getString(5));
-                data_comment.add(cursor.getString(6));
+                CardiacModel cardiacModel = new CardiacModel();
+                cardiacModel.id = cursor.getLong(0);
+                cardiacModel.date = cursor.getString(1);
+                cardiacModel.time = cursor.getString(2);
+                cardiacModel.systolic = cursor.getString(3);
+                cardiacModel.diastolic = cursor.getString(4);
+                cardiacModel.heartRate = cursor.getString(5);
+                cardiacModel.comment = cursor.getString(6);
+                data.add(cardiacModel);
             }
         }
     }

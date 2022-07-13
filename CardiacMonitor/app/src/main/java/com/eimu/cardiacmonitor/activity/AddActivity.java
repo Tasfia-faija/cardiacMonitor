@@ -1,4 +1,4 @@
-package com.eimu.cardiacmonitor;
+package com.eimu.cardiacmonitor.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.eimu.cardiacmonitor.MyDatabaseHelper;
+import com.eimu.cardiacmonitor.R;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -38,3 +41,5 @@ public class AddActivity extends AppCompatActivity {
 
     }
 }
+
+//crash korse same vabe
