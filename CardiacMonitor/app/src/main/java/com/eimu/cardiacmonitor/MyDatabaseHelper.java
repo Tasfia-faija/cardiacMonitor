@@ -47,7 +47,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    void patientRecord(String date, String time, String systolic, String diastolic, String heart_rate, String comment){
+    public void patientRecord(String date, String time, String systolic, String diastolic, String heart_rate, String comment){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
 
@@ -65,7 +65,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    Cursor readAllData(){
+    public Cursor readAllData(){
         String query = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
