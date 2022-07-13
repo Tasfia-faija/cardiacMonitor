@@ -32,10 +32,6 @@
         "source": "C:\\Users\\tasfi\\.gradle\\daemon\\7.3.3\\com.eimu.cardiacmonitor.app-main-27:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.eimu.cardiacmonitor.app-merged_res-25:/layout_activity_add.xml.flat",
-        "source": "com.eimu.cardiacmonitor.app-main-27:/layout/activity_add.xml"
-    },
-    {
         "merged": "C:\\Users\\tasfi\\.gradle\\daemon\\7.3.3\\com.eimu.cardiacmonitor.app-merged_res-25:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\tasfi\\.gradle\\daemon\\7.3.3\\com.eimu.cardiacmonitor.app-main-27:\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
@@ -78,6 +74,10 @@
     {
         "merged": "C:\\Users\\tasfi\\.gradle\\daemon\\7.3.3\\com.eimu.cardiacmonitor.app-merged_res-25:\\layout_patientsdata_row.xml.flat",
         "source": "C:\\Users\\tasfi\\.gradle\\daemon\\7.3.3\\com.eimu.cardiacmonitor.app-main-27:\\layout\\patientsdata_row.xml"
+    },
+    {
+        "merged": "com.eimu.cardiacmonitor.app-merged_res-25:/layout_patientsdata_row.xml.flat",
+        "source": "com.eimu.cardiacmonitor.app-main-27:/layout/patientsdata_row.xml"
     },
     {
         "merged": "C:\\Users\\tasfi\\.gradle\\daemon\\7.3.3\\com.eimu.cardiacmonitor.app-merged_res-25:\\layout_activity_main.xml.flat",
