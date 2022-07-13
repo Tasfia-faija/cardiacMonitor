@@ -13,9 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CardiacMonitor"
         tools:targetApi="31">
-        <activity android:parentActivityName=".MainActivity"
-            android:name=".AddActivity"
+        <activity
+            android:name=".UpdateActivity"
             android:exported="false" />
+        <activity
+            android:name=".AddActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />

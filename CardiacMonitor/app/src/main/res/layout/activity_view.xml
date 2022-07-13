@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".activity.ViewActivity">
+
+    <TextView
+        android:id="@+id/detail_Header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="50dp"
+        android:text="View Details :"
+        android:textColor="@color/black"
+        android:textSize="21sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Date_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="date"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/detail_Header"
+        app:layout_constraintTop_toBottomOf="@+id/detail_Header" />
+
+    <TextView
+        android:id="@+id/DateValue_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:text="dd/mm/yy"
+        android:textColor="#808080"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/detail_Header"
+        app:layout_constraintTop_toBottomOf="@+id/Date_view" />
+
+    <TextView
+        android:id="@+id/Time_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="time"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/detail_Header"
+        app:layout_constraintTop_toBottomOf="@+id/Date_view" />
+
+    <TextView
+        android:id="@+id/TimeValue_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:text="hh:mm"
+        android:textColor="#808080"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/detail_Header"
+        app:layout_constraintTop_toBottomOf="@+id/Time_view" />
+
+    <TextView
+        android:id="@+id/Systolic_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="/systolic"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/detail_Header"
+        app:layout_constraintTop_toBottomOf="@+id/Time_view" />
+
+    <TextView
+        android:id="@+id/SystolicValue_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:text="number"
+        android:textColor="#808080"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/detail_Header"
+        app:layout_constraintTop_toBottomOf="@+id/Systolic_view" />
+
+    <TextView
+        android:id="@+id/Diastolic_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="diastolic"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/detail_Header"
+        app:layout_constraintTop_toBottomOf="@+id/Systolic_view" />
+
+    <TextView
+        android:id="@+id/DiastolicValue_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:text="number"
+        android:textColor="#808080"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/detail_Header"
+        app:layout_constraintTop_toBottomOf="@+id/Diastolic_view" />
+
+    <TextView
+        android:id="@+id/HeartRate_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="heart_rate"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/detail_Header"
+        app:layout_constraintTop_toBottomOf="@+id/Diastolic_view" />
+
+    <TextView
+        android:id="@+id/HeartRateValue_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:text="number"
+        android:textColor="#808080"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/detail_Header"
+        app:layout_constraintTop_toBottomOf="@+id/HeartRate_view" />
+
+    <TextView
+        android:id="@+id/Comment_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="comment"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@+id/detail_Header"
+        app:layout_constraintTop_toBottomOf="@+id/HeartRate_view" />
+
+    <TextView
+        android:id="@+id/CommentValue_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="50dp"
+        android:text="Comment"
+        android:textColor="#808080"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/detail_Header"
+        app:layout_constraintTop_toBottomOf="@+id/Comment_view" />
+</androidx.constraintlayout.widget.ConstraintLayout>

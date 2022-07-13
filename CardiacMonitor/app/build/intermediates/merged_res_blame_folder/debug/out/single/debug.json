@@ -36,6 +36,10 @@
         "source": "com.eimu.cardiacmonitor.app-main-27:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
+        "merged": "com.eimu.cardiacmonitor.app-merged_res-25:/layout_activity_update.xml.flat",
+        "source": "com.eimu.cardiacmonitor.app-main-27:/layout/activity_update.xml"
+    },
+    {
         "merged": "com.eimu.cardiacmonitor.app-merged_res-25:/drawable_ic_launcher_background.xml.flat",
         "source": "com.eimu.cardiacmonitor.app-main-27:/drawable/ic_launcher_background.xml"
     },
@@ -66,6 +70,10 @@
     {
         "merged": "com.eimu.cardiacmonitor.app-merged_res-25:/drawable_background.jpeg.flat",
         "source": "com.eimu.cardiacmonitor.app-main-27:/drawable/background.jpeg"
+    },
+    {
+        "merged": "com.eimu.cardiacmonitor.app-merged_res-25:/layout_activity_view.xml.flat",
+        "source": "com.eimu.cardiacmonitor.app-main-27:/layout/activity_view.xml"
     },
     {
         "merged": "com.eimu.cardiacmonitor.app-merged_res-25:/xml_data_extraction_rules.xml.flat",

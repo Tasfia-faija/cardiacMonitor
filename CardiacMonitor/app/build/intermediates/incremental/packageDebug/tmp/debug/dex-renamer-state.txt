@@ -1,10 +1,13 @@
-#Wed Jul 13 18:12:35 BDT 2022
-base.2=F\:\\3-1\\CSE 3120\\ProjectSW\\cardiacMonitor\\CardiacMonitor\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
+#Wed Jul 13 22:21:39 BDT 2022
+path.3=14/classes.dex
 path.2=12/classes.dex
-base.1=F\:\\3-1\\CSE 3120\\ProjectSW\\cardiacMonitor\\CardiacMonitor\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 path.1=0/classes.dex
+path.0=classes.dex
+base.3=F\:\\3-1\\CSE 3120\\ProjectSW\\cardiacMonitor\\CardiacMonitor\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\14\\classes.dex
+base.2=F\:\\3-1\\CSE 3120\\ProjectSW\\cardiacMonitor\\CardiacMonitor\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\12\\classes.dex
+base.1=F\:\\3-1\\CSE 3120\\ProjectSW\\cardiacMonitor\\CardiacMonitor\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.0=F\:\\3-1\\CSE 3120\\ProjectSW\\cardiacMonitor\\CardiacMonitor\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+renamed.3=classes4.dex
 renamed.2=classes3.dex
 renamed.1=classes2.dex
 renamed.0=classes.dex
-path.0=classes.dex
