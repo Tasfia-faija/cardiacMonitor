@@ -1,95 +1,131 @@
 package com.eimu.cardiacmonitor.adapter;
+        import android.annotation.SuppressLint;
+        import android.content.Context;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.ImageView;
+        import android.widget.TextView;
+        import android.widget.Toast;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+        import androidx.annotation.NonNull;
+        import androidx.cardview.widget.CardView;
+        import androidx.recyclerview.widget.RecyclerView;
 
-//import androidx.annotation.NonNull;
-//import androidx.recyclerview.widget.RecyclerView;
+        import com.eimu.cardiacmonitor.R;
+        import com.eimu.cardiacmonitor.model.CardiacModel;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+        import java.util.ArrayList;
 
-import com.eimu.cardiacmonitor.R;
-import com.eimu.cardiacmonitor.activity.ViewActivity;
-import com.eimu.cardiacmonitor.model.CardiacModel;
-import com.eimu.cardiacmonitor.model.IClickListener;
 
-import java.util.ArrayList;
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CardiacViewHolder> {
+    private static CustomClickListener customClickListener;
+    private final ArrayList<CardiacModel> cardiacModelsArrayList;
+    private CardiacModel cardiacModel;
+    private final Context context;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
-    private ArrayList<CardiacModel> data;
-    private IClickListener listener;
-    int position;
+    //constructor
+    public CustomAdapter(Context context, ArrayList<CardiacModel> rList) {
+        this.cardiacModelsArrayList =rList;
+        this.context = context;
 
-    public CustomAdapter() {
-        this.data = new ArrayList<>();
     }
 
-   public CustomAdapter(@NonNull ArrayList<CardiacModel> data) {
-        this.data = data;
+    public CustomAdapter(ArrayList<CardiacModel> cardiacModelsArrayList, Context context) {
+        this.cardiacModelsArrayList = cardiacModelsArrayList;
+        this.context = context;
     }
 
-    public void updateData(@NonNull ArrayList<CardiacModel> data) {
-        this.data = data;
+    public void setCustomClickListener(CustomClickListener customClickListener) //called from mainactivity
+    {
+        this.customClickListener = customClickListener; //setting data
     }
 
-    public void setListener(IClickListener listener) {
-        this.listener = listener;
+    @NonNull
+    @Override
+    public CardiacViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {  //an object of roomview holder which contain itemview
+        View view = LayoutInflater.from(context).inflate(R.layout.patientsdata_row, parent, false);
+        return new CardiacViewHolder(view); //passed in itemview
+
     }
 
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.patientsdata_row, parent, false));
-    }
-
-    @Override
-
-    public void onBindViewHolder(MyViewHolder holder, int position) {
-        CardiacModel model = data.get(position);
-        holder.loadView(model);
-        holder.itemView.setOnClickListener(view -> {
-            if (listener != null) {
-                listener.onClick(model);
+    public void onBindViewHolder(@NonNull CustomAdapter.CardiacViewHolder holder,@SuppressLint("RecyclerView") int position) {
+        if (!cardiacModelsArrayList.isEmpty()) cardiacModel = cardiacModelsArrayList.get(position);
+       // Toast.makeText(context, ""+cardiacModel.getDate(), Toast.LENGTH_LONG).show();
+        holder.dateTextView.setText("Date: "+cardiacModel.getDate());
+        holder.systolicTextView.setText("Systolic: "+cardiacModel.getSystolic());
+        holder.diastolicTextView.setText("Diastolic: "+cardiacModel.getDiastolic());
+        holder.heartTextView.setText("Heart Rate: "+cardiacModel.getHeartRate());
+        holder.deleterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(customClickListener != null)
+                {
+                    if(position != RecyclerView.NO_POSITION)
+                    {
+                        customClickListener.onDeleteClick(position);
+                    }
+                }
             }
         });
+
+
+
+
     }
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return cardiacModelsArrayList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public interface CustomClickListener {
+        void customOnClick(int position, View v);
 
-        TextView data_date_txt, data_systolic_txt, data_diastolic_txt, data_heartrate_txt;
+        void customOnLongClick(int position, View v);
 
+        void onDeleteClick(int position);
+        //declaring method which will provide to main activity //position and view will also be provided
+    }
 
+    public class CardiacViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+        TextView systolicTextView;
+        TextView heartTextView;
+        TextView diastolicTextView;
+        TextView dateTextView;
+        CardView containerCardView;
+        ImageView deleterButton;
 
-        void loadView(CardiacModel model) {
-            data_date_txt.setText(model.date);
-            //holder.data_time_txt.setText(String.valueOf(data_time.get(position)));
-            data_systolic_txt.setText(model.systolic);
-            data_diastolic_txt.setText(model.diastolic);
-            data_heartrate_txt.setText(model.heartRate);
-            //holder.data_comment_txt.setText(String.valueOf(data_comment.get(position)));
-        }
-
-        public MyViewHolder(View itemView) {
+        public CardiacViewHolder(@NonNull View itemView) {
             super(itemView);
-            data_date_txt = itemView.findViewById(R.id.data_date_txt);
-            data_systolic_txt = itemView.findViewById(R.id.data_systolic_txt);
-            data_diastolic_txt = itemView.findViewById(R.id.data_diastolic_txt);
-            data_heartrate_txt = itemView.findViewById(R.id.data_heartrate_txt);
+            systolicTextView = itemView.findViewById(R.id.data_systolic_txt);
+            diastolicTextView = itemView.findViewById(R.id.data_diastolic_txt);
+            dateTextView = itemView.findViewById(R.id.data_date_txt);
+            heartTextView = itemView.findViewById(R.id.data_heartrate_txt);
+            containerCardView = itemView.findViewById(R.id.llContainerCardView);
+            deleterButton = itemView.findViewById(R.id.deleteButton);
 
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
+
+        } //to create view of every list item
+
+        @Override
+        public void onClick(View view) {
+            customClickListener.customOnClick(getAdapterPosition(), view);  //position and view setting to provide to mainactivity
         }
 
+        public boolean onLongClick(View view) {
+
+            customClickListener.customOnLongClick(getAdapterPosition(), view);  //position and view setting to provide to mainactivity
+            return true;
+
+        }
     }
+
+
 }
+
+

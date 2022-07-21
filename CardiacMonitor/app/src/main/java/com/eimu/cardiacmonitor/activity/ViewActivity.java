@@ -2,7 +2,10 @@ package com.eimu.cardiacmonitor.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +16,8 @@ public class ViewActivity extends AppCompatActivity {
     static String CARDIAC_MODEL = "CardiacModel";
     TextView date_view,time_view,systolic_view,diastolic_view,heartrate_view,comment_view;
     CardiacModel cardiacModel;
+    Button edit_button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +29,21 @@ public class ViewActivity extends AppCompatActivity {
         diastolic_view = findViewById(R.id.DiastolicValue_view);
         heartrate_view = findViewById(R.id.HeartRateValue_view);
         comment_view = findViewById(R.id.CommentValue_view);
+        edit_button = findViewById(R.id.editButton);
 
         //void getAndSetIntentData();
+
+        edit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewActivity.this, UpdateActivity.class);
+                //intent.putExtra();
+                startActivity(intent);
+            }
+        });
     }
+
+
 
     void getAndSetIntentData(){
         if(getIntent().hasExtra(CARDIAC_MODEL)){
@@ -42,5 +59,8 @@ public class ViewActivity extends AppCompatActivity {
         {
             Toast.makeText(this,"no data",Toast.LENGTH_SHORT).show();
         }
+
     }
+
+
 }

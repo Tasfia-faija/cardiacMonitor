@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_background"
+    android:animateLayoutChanges="true"
     tools:context=".activity.AddActivity">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_background">
 
     <TextView
         android:id="@+id/header"
@@ -94,7 +98,7 @@
         android:layout_marginTop="5dp"
         android:background="@color/white"
         android:hint="number"
-
+        android:inputType="number"
         android:padding="7dp"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -121,7 +125,7 @@
         android:layout_marginTop="5dp"
         android:background="@color/white"
         android:hint="number"
-
+        android:inputType="number"
         android:padding="7dp"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -148,7 +152,7 @@
         android:layout_marginTop="5dp"
         android:background="@color/white"
         android:hint="number"
-
+        android:inputType="number"
         android:padding="7dp"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -188,9 +192,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/commentValue"
         android:backgroundTint="#7A0D0D"
         android:layout_marginBottom="27dp"
         tools:ignore="MissingConstraints">
@@ -199,9 +204,9 @@
             android:id="@+id/addButton"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textSize="29sp"
             android:background="@color/cardview_light_background"
             android:text="Save"
-            />
+            android:textSize="29sp" />
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
