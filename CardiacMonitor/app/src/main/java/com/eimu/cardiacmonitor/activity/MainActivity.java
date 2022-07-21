@@ -25,38 +25,58 @@ public class  MainActivity extends AppCompatActivity {
     FloatingActionButton add_button;
 
     MyDatabaseHelper myDB;
-    ArrayList<CardiacModel> data;
+    ArrayList<CardiacModel> dataArrayList;
      CustomAdapter customAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        myDB = new MyDatabaseHelper(MainActivity.this);
+
 
         recyclerView = findViewById(R.id.recycleview);
         add_button = findViewById(R.id.add_button);
         add_button.setOnClickListener(view -> {
             Intent intent  = new Intent(MainActivity.this, AddActivity.class);
             startActivity(intent);
+            finish();
         });
 
         myDB = new MyDatabaseHelper(MainActivity.this);
-        data = new ArrayList<>();
+        dataArrayList = new ArrayList<>();
 
-        storeDataInArrays();
-
-        customAdapter = new CustomAdapter(data);
-        customAdapter.setListener(model -> {
-            //todo do something here
-            Intent intent = new Intent(MainActivity.this, ViewActivity.class);
-            intent.putExtra(ViewActivity.CARDIAC_MODEL , model);
-            startActivity(intent);
-        });
+        retreiveDataInArrays();
+        customAdapter = new CustomAdapter(MainActivity.this,dataArrayList);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+
+        customAdapter.setCustomClickListener(new CustomAdapter.CustomClickListener() {
+            @Override
+            public void customOnClick(int position, View v) {
+
+            }
+
+            @Override
+            public void customOnLongClick(int position, View v) {
+
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+               // dataArrayList.remove(position);
+                myDB.deleteOneRow(""+(position));
+                dataArrayList.remove(position);
+                customAdapter.notifyItemRemoved(position);
+            }
+        });
+
+
+
+
     }
 
-    void  storeDataInArrays(){
+    void  retreiveDataInArrays(){
         Cursor cursor = myDB.readAllData();
         if(cursor.getCount() == 0){
             Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show();
@@ -70,7 +90,7 @@ public class  MainActivity extends AppCompatActivity {
                 cardiacModel.diastolic = cursor.getString(4);
                 cardiacModel.heartRate = cursor.getString(5);
                 cardiacModel.comment = cursor.getString(6);
-                data.add(cardiacModel);
+                dataArrayList.add(cardiacModel);
             }
         }
     }

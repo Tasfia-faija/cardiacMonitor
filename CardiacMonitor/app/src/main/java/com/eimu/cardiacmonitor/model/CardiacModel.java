@@ -15,7 +15,63 @@ public class CardiacModel implements Serializable {
         this.comment = "";
     }
 
-    public CardiacModel(Long id,String date, String time, String systolic, String diastolic, String heartRate, String comment) {
+    public String getDate() {
+        return date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public String getSystolic() {
+        return systolic;
+    }
+
+    public String getDiastolic() {
+        return diastolic;
+    }
+
+    public String getHeartRate() {
+        return heartRate;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public void setSystolic(String systolic) {
+        this.systolic = systolic;
+    }
+
+    public void setDiastolic(String diastolic) {
+        this.diastolic = diastolic;
+    }
+
+    public void setHeartRate(String heartRate) {
+        this.heartRate = heartRate;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public CardiacModel(Long id, String date, String time, String systolic, String diastolic, String heartRate, String comment) {
         this.id = id;
         this.date = date;
         this.time = time;
@@ -24,4 +80,5 @@ public class CardiacModel implements Serializable {
         this.heartRate = heartRate;
         this.comment = comment;
     }
+
 }
