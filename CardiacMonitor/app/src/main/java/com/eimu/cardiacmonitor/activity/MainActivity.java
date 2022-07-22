@@ -65,9 +65,13 @@ public class  MainActivity extends AppCompatActivity {
             @Override
             public void onDeleteClick(int position) {
                // dataArrayList.remove(position);
-                myDB.deleteOneRow(""+(position));
-                dataArrayList.remove(position);
-                customAdapter.notifyItemRemoved(position);
+                if(position != RecyclerView.NO_POSITION)
+                {
+                    myDB.deleteOneRow(""+(position));
+                    dataArrayList.remove(position);
+                    customAdapter.notifyItemRemoved(position);
+                }
+
             }
         });
 
