@@ -1,5 +1,7 @@
 package com.eimu.cardiacmonitor;
 
+import static android.app.DownloadManager.COLUMN_TITLE;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -64,7 +66,28 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
             Toast.makeText(context, "Added Sucessfully", Toast.LENGTH_SHORT).show();
         }
     }
+    void updateData(String row_id, String title, String author, String pages){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
 
+
+        long result = db.update(TABLE_NAME, cv, "_id=?", new String[]{row_id});
+        if(result == -1){
+            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(context, "Updated Successfully!", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+    public void deleteOneRow(String row_id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
+        if(result == -1){
+            Toast.makeText(context, "Failed to Delete.", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(context, "Successfully Deleted.", Toast.LENGTH_SHORT).show();
+        }
+    }
     public Cursor readAllData(){
         String query = "SELECT * FROM " + TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
