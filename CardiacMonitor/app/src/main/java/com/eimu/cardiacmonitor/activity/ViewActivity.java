@@ -3,6 +3,7 @@ package com.eimu.cardiacmonitor.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +12,18 @@ import android.widget.Toast;
 
 import com.eimu.cardiacmonitor.R;
 import com.eimu.cardiacmonitor.model.CardiacModel;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
 
 public class ViewActivity extends AppCompatActivity {
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    ArrayList<CardiacModel> dataArrayList;
+    Gson gson;
     static String CARDIAC_MODEL = "CardiacModel";
     TextView date_view,time_view,systolic_view,diastolic_view,heartrate_view,comment_view;
     CardiacModel cardiacModel;
@@ -31,13 +42,21 @@ public class ViewActivity extends AppCompatActivity {
         comment_view = findViewById(R.id.CommentValue_view);
         edit_button = findViewById(R.id.editButton);
 
-        //void getAndSetIntentData();
+        Intent intent = getIntent();
+        int index = intent.getIntExtra("index",0);
+
+        date_view.setText(cardiacModel.getDate().toString());
+        time_view.setText(cardiacModel.getTime().toString());
+        systolic_view.setText(cardiacModel.getSystolic().toString());
+        diastolic_view.setText(cardiacModel.getDiastolic().toString());
+        heartrate_view.setText(cardiacModel.getHeartRate().toString());
+        comment_view.setText(cardiacModel.getComment().toString());
 
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ViewActivity.this, UpdateActivity.class);
-                //intent.putExtra();
+                intent.putExtra("index",index);
                 startActivity(intent);
             }
         });
@@ -47,19 +66,25 @@ public class ViewActivity extends AppCompatActivity {
 
     void getAndSetIntentData(){
         if(getIntent().hasExtra(CARDIAC_MODEL)){
-            cardiacModel = (CardiacModel) getIntent().getSerializableExtra(CARDIAC_MODEL);
-         date_view.setText(cardiacModel.date);
-            time_view.setText(cardiacModel.time);
-            systolic_view.setText(cardiacModel.systolic);
-            diastolic_view.setText(cardiacModel.diastolic);
-            heartrate_view.setText(cardiacModel.heartRate);
-            comment_view.setText(cardiacModel.comment);
+
         }
         else
         {
             Toast.makeText(this,"no data",Toast.LENGTH_SHORT).show();
         }
 
+    }
+    private void readData()
+    {
+        sharedPreferences = getSharedPreferences("faija",MODE_PRIVATE);
+        gson = new Gson();
+        String jsonString = sharedPreferences.getString("eimu",null);
+        Type type = new TypeToken<ArrayList<CardiacModel>>(){}.getType();
+        dataArrayList = gson.fromJson(jsonString,type);
+        if(dataArrayList ==null)
+        {
+            dataArrayList = new ArrayList<>();
+        }
     }
 
 
