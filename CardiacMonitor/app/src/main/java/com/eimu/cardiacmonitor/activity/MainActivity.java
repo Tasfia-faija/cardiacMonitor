@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +17,10 @@ import com.eimu.cardiacmonitor.R;
 import com.eimu.cardiacmonitor.model.CardiacModel;
 import com.eimu.cardiacmonitor.model.IClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class  MainActivity extends AppCompatActivity {
@@ -25,36 +29,38 @@ public class  MainActivity extends AppCompatActivity {
     FloatingActionButton add_button;
 
     MyDatabaseHelper myDB;
-    ArrayList<CardiacModel> dataArrayList;
-     CustomAdapter customAdapter;
+    public static ArrayList<CardiacModel> dataArrayList;
+    public static CustomAdapter customAdapter;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        myDB = new MyDatabaseHelper(MainActivity.this);
-
+        readData();
 
         recyclerView = findViewById(R.id.recycleview);
         add_button = findViewById(R.id.add_button);
-        add_button.setOnClickListener(view -> {
-            Intent intent  = new Intent(MainActivity.this, AddActivity.class);
-            startActivity(intent);
-            finish();
-        });
-
-        myDB = new MyDatabaseHelper(MainActivity.this);
-        dataArrayList = new ArrayList<>();
-
-        retreiveDataInArrays();
         customAdapter = new CustomAdapter(MainActivity.this,dataArrayList);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        add_button.setOnClickListener(view -> {
+            Intent intent  = new Intent(MainActivity.this, AddActivity.class);
+            startActivity(intent);
+        });
+
+
+
 
         customAdapter.setCustomClickListener(new CustomAdapter.CustomClickListener() {
             @Override
             public void customOnClick(int position, View v) {
-
+                Intent i = new Intent(MainActivity.this,ViewActivity.class);
+                i.putExtra("index",position);
+                startActivity(i);
+                finish();
             }
 
             @Override
@@ -67,8 +73,8 @@ public class  MainActivity extends AppCompatActivity {
                // dataArrayList.remove(position);
                 if(position != RecyclerView.NO_POSITION)
                 {
-                    myDB.deleteOneRow(""+(position));
                     dataArrayList.remove(position);
+                    writeData();
                     customAdapter.notifyItemRemoved(position);
                 }
 
@@ -80,23 +86,28 @@ public class  MainActivity extends AppCompatActivity {
 
     }
 
-    void  retreiveDataInArrays(){
-        Cursor cursor = myDB.readAllData();
-        if(cursor.getCount() == 0){
-            Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show();
-        }else{
-            while (cursor.moveToNext()){
-                CardiacModel cardiacModel = new CardiacModel();
-                cardiacModel.id = cursor.getLong(0);
-                cardiacModel.date = cursor.getString(1);
-                cardiacModel.time = cursor.getString(2);
-                cardiacModel.systolic = cursor.getString(3);
-                cardiacModel.diastolic = cursor.getString(4);
-                cardiacModel.heartRate = cursor.getString(5);
-                cardiacModel.comment = cursor.getString(6);
-                dataArrayList.add(cardiacModel);
-            }
+    private void readData()
+    {
+        sharedPreferences = getSharedPreferences("faija",MODE_PRIVATE);
+        gson = new Gson();
+        String jsonString = sharedPreferences.getString("eimu",null);
+        Type type = new TypeToken<ArrayList<CardiacModel>>(){}.getType();
+        dataArrayList = gson.fromJson(jsonString,type);
+        if(dataArrayList ==null)
+        {
+            dataArrayList = new ArrayList<>();
         }
+    }
+
+
+    private void writeData()
+    {
+        sharedPreferences = getSharedPreferences("faija",MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        gson = new Gson();
+        String jsonString = gson.toJson(dataArrayList);
+        editor.putString("eimu",jsonString);
+        editor.apply();
     }
 
 }

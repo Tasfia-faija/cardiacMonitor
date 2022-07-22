@@ -71,8 +71,7 @@ public class CardiacModel implements Serializable {
         this.id = id;
     }
 
-    public CardiacModel(Long id, String date, String time, String systolic, String diastolic, String heartRate, String comment) {
-        this.id = id;
+    public CardiacModel( String date, String time, String systolic, String diastolic, String heartRate, String comment) {
         this.date = date;
         this.time = time;
         this.systolic = systolic;
