@@ -44,6 +44,10 @@ public class ViewActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         int index = intent.getIntExtra("index",0);
+        readData();
+
+        cardiacModel = dataArrayList.get(index);
+
 
         date_view.setText(cardiacModel.getDate().toString());
         time_view.setText(cardiacModel.getTime().toString());
@@ -58,6 +62,7 @@ public class ViewActivity extends AppCompatActivity {
                 Intent intent = new Intent(ViewActivity.this, UpdateActivity.class);
                 intent.putExtra("index",index);
                 startActivity(intent);
+                finish();
             }
         });
     }

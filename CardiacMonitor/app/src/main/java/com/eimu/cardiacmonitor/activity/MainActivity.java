@@ -60,7 +60,6 @@ public class  MainActivity extends AppCompatActivity {
                 Intent i = new Intent(MainActivity.this,ViewActivity.class);
                 i.putExtra("index",position);
                 startActivity(i);
-                finish();
             }
 
             @Override

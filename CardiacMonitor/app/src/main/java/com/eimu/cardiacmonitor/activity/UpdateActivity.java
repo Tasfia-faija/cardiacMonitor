@@ -9,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.eimu.cardiacmonitor.R;
 import com.eimu.cardiacmonitor.model.CardiacModel;
@@ -33,10 +34,15 @@ public class UpdateActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
+        readData();
         Intent intent = getIntent();
         int index = intent.getIntExtra("index",0);
         cardiacModel = dataArrayList.get(index);
-        readData();
+
+
+
+
+
         date_input = findViewById(R.id.dateValue2);
         time_input = findViewById(R.id.timeValue2);
         systolic_input = findViewById(R.id.systolicValue2);
@@ -62,12 +68,12 @@ public class UpdateActivity extends AppCompatActivity {
                 comment = comment_input.getText().toString();
                 cardiacModel = new CardiacModel(date,time,systolic,diastolic,heartrate,comment);
                 dataArrayList.set(index,cardiacModel);
-                MainActivity.dataArrayList.add(cardiacModel);
+                MainActivity.dataArrayList.set(index,cardiacModel);
                 MainActivity.customAdapter.notifyDataSetChanged();
                 PreferenceManager.getDefaultSharedPreferences(UpdateActivity.this).edit().clear().commit();
                 writeData();
-                startActivity(new Intent(UpdateActivity.this,MainActivity.class));
                 finish();
+
             }
         });
 
