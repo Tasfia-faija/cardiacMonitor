@@ -29,7 +29,7 @@ public class  MainActivity extends AppCompatActivity {
     FloatingActionButton add_button;
 
     MyDatabaseHelper myDB;
-    public static ArrayList<CardiacModel> dataArrayList;
+   // public static ArrayList<CardiacModel> dataArrayList;
     public static CustomAdapter customAdapter;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -43,7 +43,7 @@ public class  MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recycleview);
         add_button = findViewById(R.id.add_button);
-        customAdapter = new CustomAdapter(MainActivity.this,dataArrayList);
+        customAdapter = new CustomAdapter(MainActivity.this,DataList.array);
         recyclerView.setAdapter(customAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
         add_button.setOnClickListener(view -> {
@@ -72,7 +72,8 @@ public class  MainActivity extends AppCompatActivity {
                // dataArrayList.remove(position);
                 if(position != RecyclerView.NO_POSITION)
                 {
-                    dataArrayList.remove(position);
+                   // DataList.array.remove(position);
+                    new DataList().deleteRecord(position);
                     writeData();
                     customAdapter.notifyItemRemoved(position);
                 }
@@ -91,10 +92,10 @@ public class  MainActivity extends AppCompatActivity {
         gson = new Gson();
         String jsonString = sharedPreferences.getString("eimu",null);
         Type type = new TypeToken<ArrayList<CardiacModel>>(){}.getType();
-        dataArrayList = gson.fromJson(jsonString,type);
-        if(dataArrayList ==null)
+        DataList.array = gson.fromJson(jsonString,type);
+        if(DataList.array ==null)
         {
-            dataArrayList = new ArrayList<>();
+            DataList.array = new ArrayList<>();
         }
     }
 
@@ -104,7 +105,7 @@ public class  MainActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("faija",MODE_PRIVATE);
         editor = sharedPreferences.edit();
         gson = new Gson();
-        String jsonString = gson.toJson(dataArrayList);
+        String jsonString = gson.toJson(DataList.array);
         editor.putString("eimu",jsonString);
         editor.apply();
     }
