@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class ViewActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-    ArrayList<CardiacModel> dataArrayList;
+    //ArrayList<CardiacModel> dataArrayList;
     Gson gson;
     static String CARDIAC_MODEL = "CardiacModel";
     TextView date_view,time_view,systolic_view,diastolic_view,heartrate_view,comment_view;
@@ -46,7 +46,7 @@ public class ViewActivity extends AppCompatActivity {
         int index = intent.getIntExtra("index",0);
         readData();
 
-        cardiacModel = dataArrayList.get(index);
+        cardiacModel = DataList.array.get(index);
 
 
         date_view.setText(cardiacModel.getDate().toString());
@@ -85,10 +85,10 @@ public class ViewActivity extends AppCompatActivity {
         gson = new Gson();
         String jsonString = sharedPreferences.getString("eimu",null);
         Type type = new TypeToken<ArrayList<CardiacModel>>(){}.getType();
-        dataArrayList = gson.fromJson(jsonString,type);
-        if(dataArrayList ==null)
+        DataList.array = gson.fromJson(jsonString,type);
+        if(DataList.array ==null)
         {
-            dataArrayList = new ArrayList<>();
+            DataList.array = new ArrayList<>();
         }
     }
 
