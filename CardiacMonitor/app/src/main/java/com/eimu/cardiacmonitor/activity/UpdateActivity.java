@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class UpdateActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-    ArrayList<CardiacModel> dataArrayList;
+    //ArrayList<CardiacModel> dataArrayList;
     Gson gson;
     EditText date_input,time_input,systolic_input,diastolic_input,heartrate_input,comment_input;
     String date, time, systolic, diastolic, heartrate, comment;
@@ -37,7 +37,7 @@ public class UpdateActivity extends AppCompatActivity {
         readData();
         Intent intent = getIntent();
         int index = intent.getIntExtra("index",0);
-        cardiacModel = dataArrayList.get(index);
+        cardiacModel = DataList.array.get(index);
 
 
 
@@ -69,8 +69,8 @@ public class UpdateActivity extends AppCompatActivity {
                 cardiacModel = new CardiacModel(date,time,systolic,diastolic,heartrate,comment);
                 //dataArrayList.set(index,cardiacModel);
                 DataList.array.set(index,cardiacModel);
-                //MainActivity.dataArrayList.set(index,cardiacModel);
-                MainActivity.customAdapter.notifyDataSetChanged();
+                MainActivity.customAdapter.notifyItemChanged(index,cardiacModel);
+                // MainActivity.customAdapter.notifyDataSetChanged();
                 PreferenceManager.getDefaultSharedPreferences(UpdateActivity.this).edit().clear().commit();
                 writeData();
                 finish();
@@ -85,10 +85,10 @@ public class UpdateActivity extends AppCompatActivity {
         gson = new Gson();
         String jsonString = sharedPreferences.getString("eimu",null);
         Type type = new TypeToken<ArrayList<CardiacModel>>(){}.getType();
-        dataArrayList = gson.fromJson(jsonString,type);
-        if(dataArrayList ==null)
+        DataList.array = gson.fromJson(jsonString,type);
+        if(DataList.array ==null)
         {
-            dataArrayList = new ArrayList<>();
+            DataList.array = new ArrayList<>();
         }
     }
 
@@ -98,7 +98,7 @@ public class UpdateActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("faija",MODE_PRIVATE);
         editor = sharedPreferences.edit();
         gson = new Gson();
-        String jsonString = gson.toJson(dataArrayList);
+        String jsonString = gson.toJson(DataList.array);
         editor.putString("eimu",jsonString);
         editor.apply();
     }

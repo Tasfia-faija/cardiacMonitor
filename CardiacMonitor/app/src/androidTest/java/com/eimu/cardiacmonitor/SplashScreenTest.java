@@ -4,10 +4,11 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static org.junit.Assert.*;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.filters.LargeTest;
+
+import com.eimu.cardiacmonitor.activity.SplashActivity;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -19,7 +20,7 @@ import org.junit.runners.JUnit4;
 
 public class SplashScreenTest {
     @Rule
-    public ActivityScenarioRule<SplashScreen> splash_screenActivityScenarioRule = new ActivityScenarioRule<SplashScreen>(SplashScreen.class);
+    public ActivityScenarioRule<SplashActivity> splash_screenActivityScenarioRule = new ActivityScenarioRule<SplashActivity>(SplashActivity.class);
 
     @Test
     public void testSplashScreen() {

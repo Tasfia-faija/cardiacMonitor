@@ -27,7 +27,7 @@
             android:name=".activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".activity.SplashActivity"
             android:exported="true"
             tools:ignore="DuplicateActivity">
             <intent-filter>
