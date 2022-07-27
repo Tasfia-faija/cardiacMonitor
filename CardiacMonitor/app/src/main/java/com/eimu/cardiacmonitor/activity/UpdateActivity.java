@@ -67,8 +67,9 @@ public class UpdateActivity extends AppCompatActivity {
                 heartrate = heartrate_input.getText().toString();
                 comment = comment_input.getText().toString();
                 cardiacModel = new CardiacModel(date,time,systolic,diastolic,heartrate,comment);
-                dataArrayList.set(index,cardiacModel);
-                MainActivity.dataArrayList.set(index,cardiacModel);
+                //dataArrayList.set(index,cardiacModel);
+                DataList.array.set(index,cardiacModel);
+                //MainActivity.dataArrayList.set(index,cardiacModel);
                 MainActivity.customAdapter.notifyDataSetChanged();
                 PreferenceManager.getDefaultSharedPreferences(UpdateActivity.this).edit().clear().commit();
                 writeData();

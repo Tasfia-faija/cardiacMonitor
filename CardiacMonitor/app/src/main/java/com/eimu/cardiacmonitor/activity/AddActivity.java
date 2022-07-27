@@ -51,8 +51,9 @@ public class AddActivity extends AppCompatActivity {
                 heartrate = heartrate_input.getText().toString();
                 comment = comment_input.getText().toString();
                 cardiacModel = new CardiacModel(date,time,systolic,diastolic,heartrate,comment);
-                dataArrayList.add(cardiacModel);
-                MainActivity.dataArrayList.add(cardiacModel);
+                new DataList().addRecord(cardiacModel);
+               // dataArrayList.add(cardiacModel);
+                //DataList.array.add(cardiacModel);
                 MainActivity.customAdapter.notifyDataSetChanged();
                 writeData();
                 finish();
