@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,30 +41,83 @@ public class AddActivity extends AppCompatActivity {
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                date = date_input.getText().toString();
-                time = time_input.getText().toString();
-                systolic = systolic_input.getText().toString();
-                diastolic = diastolic_input.getText().toString();
-                heartrate = heartrate_input.getText().toString();
-                comment = comment_input.getText().toString();
-                cardiacModel = new CardiacModel(date,time,systolic,diastolic,heartrate,comment);
-                DataList.array.add(cardiacModel);
-                //  new DataList().addRecord(cardiacModel);
-                PreferenceManager.getDefaultSharedPreferences(AddActivity.this).edit().clear().commit();
-                writeData();
-                // dataArrayList.add(cardiacModel);
-                //DataList.array.add(cardiacModel);
-                MainActivity.customAdapter.notifyDataSetChanged();
-                Toast.makeText(AddActivity.this,"Data Insertion Successful",Toast.LENGTH_LONG).show();
+
+                inputFormat();
+//                date = date_input.getText().toString();
+//                time = time_input.getText().toString();
+//                systolic = systolic_input.getText().toString();
+//                diastolic = diastolic_input.getText().toString();
+//                heartrate = heartrate_input.getText().toString();
+//                comment = comment_input.getText().toString();
+//                cardiacModel = new CardiacModel(date,time,systolic,diastolic,heartrate,comment);
+//                DataList.array.add(cardiacModel);
+//                //  new DataList().addRecord(cardiacModel);
+//                PreferenceManager.getDefaultSharedPreferences(AddActivity.this).edit().clear().commit();
+//                writeData();
+//                // dataArrayList.add(cardiacModel);
+//                //DataList.array.add(cardiacModel);
+//                MainActivity.customAdapter.notifyDataSetChanged();
+//                Toast.makeText(AddActivity.this,"Data Insertion Successful",Toast.LENGTH_LONG).show();
 
 
-                finish();
+                //finish();
 
                 //public CardiacModel(Long id, String date, String time, String systolic, String diastolic, String heartRate, String comment) {
             }
         });
 
     }
+
+
+    public void inputFormat(){
+
+            if(!TextUtils.isEmpty(time_input.getText())) {
+                if (!TextUtils.isEmpty(date_input.getText())) {
+                    if ((Integer.parseInt(systolic_input.getText().toString()) >= 0) && (Integer.parseInt(systolic_input.getText().toString()) <= 200) && (!TextUtils.isEmpty(systolic_input.getText()))) {
+                        if ((Integer.parseInt(diastolic_input.getText().toString()) >= 0) && (Integer.parseInt(diastolic_input.getText().toString()) <= 150) && (!TextUtils.isEmpty(diastolic_input.getText()))) {
+                            if ((Integer.parseInt(heartrate_input.getText().toString()) >= 0) && (Integer.parseInt(heartrate_input.getText().toString()) <= 150) && (!TextUtils.isEmpty(heartrate_input.getText()))) {
+
+                                date = date_input.getText().toString();
+                                time = time_input.getText().toString();
+                                systolic = systolic_input.getText().toString();
+                                diastolic = diastolic_input.getText().toString();
+                                heartrate = heartrate_input.getText().toString();
+                                comment = comment_input.getText().toString();
+                                cardiacModel = new CardiacModel(date, time, systolic, diastolic, heartrate, comment);
+                                new DataList().addRecord(cardiacModel);
+                                //jamiArray.add(modelclass);
+                                PreferenceManager.getDefaultSharedPreferences(AddActivity.this).edit().clear().commit();
+                                writeData();
+                                //RecordList.mcl.add(modelclass);
+                                MainActivity.customAdapter.notifyDataSetChanged();
+                                Toast.makeText(AddActivity.this, "Data Insertion Successful", Toast.LENGTH_LONG).show();
+
+
+                                finish();
+
+                            } else {
+                                heartrate_input.setError("Invalid range ");
+
+                                // Toast.makeText(DataEntry.this, "Invalid data format added", Toast.LENGTH_LONG).show();
+
+                            }
+
+                        } else {
+                            diastolic_input.setError("Invalid range");
+                            //Toast.makeText(DataEntry.this, "Invalid data format added", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        systolic_input.setError("Invalid range");
+                        //Toast.makeText(DataEntry.this, "Invalid data format added", Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    date_input.setError("The field must be required");
+                }
+            }
+            else{
+                time_input.setError("The field must be required");
+            }
+        }
 
 
 
