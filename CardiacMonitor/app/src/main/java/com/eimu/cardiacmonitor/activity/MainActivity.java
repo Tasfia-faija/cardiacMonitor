@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.eimu.cardiacmonitor.adapter.CustomAdapter;
-import com.eimu.cardiacmonitor.MyDatabaseHelper;
+//import com.eimu.cardiacmonitor.MyDatabaseHelper;
 import com.eimu.cardiacmonitor.R;
 import com.eimu.cardiacmonitor.model.CardiacModel;
 import com.eimu.cardiacmonitor.model.IClickListener;
@@ -28,8 +28,8 @@ public class  MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     FloatingActionButton add_button;
 
-    MyDatabaseHelper myDB;
-   // public static ArrayList<CardiacModel> dataArrayList;
+    //MyDatabaseHelper myDB;
+    // public static ArrayList<CardiacModel> dataArrayList;
     public static CustomAdapter customAdapter;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -69,10 +69,10 @@ public class  MainActivity extends AppCompatActivity {
 
             @Override
             public void onDeleteClick(int position) {
-               // dataArrayList.remove(position);
+                // dataArrayList.remove(position);
                 if(position != RecyclerView.NO_POSITION)
                 {
-                   // DataList.array.remove(position);
+                    // DataList.array.remove(position);
                     new DataList().deleteRecord(position);
                     writeData();
                     customAdapter.notifyItemRemoved(position);

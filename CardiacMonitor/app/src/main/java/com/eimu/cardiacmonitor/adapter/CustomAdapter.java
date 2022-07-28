@@ -1,26 +1,28 @@
 package com.eimu.cardiacmonitor.adapter;
-        import android.annotation.SuppressLint;
-        import android.content.Context;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ImageView;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.Color;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-        import androidx.annotation.NonNull;
-        import androidx.cardview.widget.CardView;
-        import androidx.recyclerview.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 
-        import com.eimu.cardiacmonitor.R;
-        import com.eimu.cardiacmonitor.model.CardiacModel;
+import com.eimu.cardiacmonitor.R;
+import com.eimu.cardiacmonitor.activity.DataList;
+import com.eimu.cardiacmonitor.model.CardiacModel;
 
-        import java.util.ArrayList;
+import java.util.ArrayList;
 
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CardiacViewHolder> {
     private static CustomClickListener customClickListener;
-    private final ArrayList<CardiacModel> cardiacModelsArrayList;
+    private  ArrayList<CardiacModel> cardiacModelsArrayList;
     private CardiacModel cardiacModel;
     private final Context context;
 
@@ -52,8 +54,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CardiacVie
 
     @Override
     public void onBindViewHolder(@NonNull CustomAdapter.CardiacViewHolder holder,@SuppressLint("RecyclerView") int position) {
-        if (!cardiacModelsArrayList.isEmpty()) cardiacModel = cardiacModelsArrayList.get(position);
-       // Toast.makeText(context, ""+cardiacModel.getDate(), Toast.LENGTH_LONG).show();
+        if (!cardiacModelsArrayList.isEmpty()) cardiacModel = DataList.array.get(position);
+        // Toast.makeText(context, ""+cardiacModel.getDate(), Toast.LENGTH_LONG).show();
         holder.dateTextView.setText("Date: "+cardiacModel.getDate());
         holder.systolicTextView.setText("Systolic: "+cardiacModel.getSystolic());
         holder.diastolicTextView.setText("Diastolic: "+cardiacModel.getDiastolic());
@@ -63,7 +65,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CardiacVie
             public void onClick(View v) {
                 if(customClickListener != null)
                 {
-                    int position = holder.getAdapterPosition();
+                    int position = holder.getAbsoluteAdapterPosition();
                     if(position != RecyclerView.NO_POSITION)
                     {
                         customClickListener.onDeleteClick(position);
@@ -72,7 +74,21 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CardiacVie
             }
         });
 
+        cardiacModel = cardiacModelsArrayList.get(position);
+        if (Integer.parseInt(cardiacModel.getDiastolic())>60 && (Integer.parseInt(cardiacModel.getDiastolic())<90))holder.diastolicTextView.setTextColor(Color.parseColor("#FF018786"));
+            // else if(Integer.parseInt(modelClass.getDiastolic())<89)
+            // holder.tx3.setTextColor(Color.parseColor("#3C96DD"));
+        else holder.diastolicTextView.setTextColor(Color.parseColor("#C3473E"));
 
+
+        if (Integer.parseInt(cardiacModel.getSystolic())>90 &&( Integer.parseInt(cardiacModel.getSystolic())<140)) holder.systolicTextView.setTextColor(Color.parseColor("#FF018786"));
+            //else if(Integer.parseInt(modelClass.getSystolic())<=140) holder.tx2.setTextColor(Color.parseColor("#3C96DD"));
+        else holder.systolicTextView.setTextColor(Color.parseColor("#C3473E"));
+
+
+        if (Integer.parseInt(cardiacModel.getHeartRate())>60 && Integer.parseInt(cardiacModel.getHeartRate())<100) holder.heartTextView.setTextColor(Color.parseColor("#FF018786"));
+        else if(Integer.parseInt(cardiacModel.getHeartRate())>=40) holder.heartTextView.setTextColor(Color.parseColor("#3C96DD"));
+        else holder.heartTextView.setTextColor(Color.parseColor("#C3473E"));
 
 
     }
@@ -128,5 +144,3 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CardiacVie
 
 
 }
-
-
