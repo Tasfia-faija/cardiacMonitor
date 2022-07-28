@@ -23,11 +23,11 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x CardiacMonitor/gradlew
     - name: Build with Gradle
-      run: ./gradlew build
+      run: CardiacMonitor/gradlew build
       
     # Execute unit tests
     - name: Unit Test
-      run: ./gradlew testDebugUnitTest
+      run: CardiacMonitor/gradlew testDebugUnitTest
 
     - name: Android Test Report
       uses: asadmansr/android-test-report-action@v1.2.0
