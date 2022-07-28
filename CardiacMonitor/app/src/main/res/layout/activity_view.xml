@@ -5,9 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/ic_background"
-    tools:context=".activity.ViewActivity">
+    tools:context=".activity.ViewActivity"
+    >
 
     <TextView
+        android:textStyle="bold"
         android:id="@+id/detail_Header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,18 +17,19 @@
         android:layout_marginTop="50dp"
         android:text="View Details :"
         android:textColor="@color/black"
-        android:textSize="21sp"
+        android:textSize="27sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:textStyle="bold"
         android:id="@+id/Date_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="date"
+        android:text="Date:"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/detail_Header"
         app:layout_constraintTop_toBottomOf="@+id/detail_Header" />
 
@@ -38,18 +41,19 @@
         android:layout_marginLeft="20dp"
         android:text="dd/mm/yy"
         android:textColor="#808080"
-        android:textSize="16sp"
+        android:textSize="21sp"
         app:layout_constraintStart_toStartOf="@+id/detail_Header"
         app:layout_constraintTop_toBottomOf="@+id/Date_view" />
 
     <TextView
+        android:textStyle="bold"
         android:id="@+id/Time_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="time"
+        android:text="Time:"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/detail_Header"
         app:layout_constraintTop_toBottomOf="@+id/Date_view" />
 
@@ -61,18 +65,19 @@
         android:layout_marginLeft="20dp"
         android:text="hh:mm"
         android:textColor="#808080"
-        android:textSize="16sp"
+        android:textSize="21sp"
         app:layout_constraintStart_toStartOf="@+id/detail_Header"
         app:layout_constraintTop_toBottomOf="@+id/Time_view" />
 
     <TextView
+        android:textStyle="bold"
         android:id="@+id/Systolic_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="systolic"
+        android:text="Systolic:"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/detail_Header"
         app:layout_constraintTop_toBottomOf="@+id/Time_view" />
 
@@ -84,18 +89,19 @@
         android:layout_marginLeft="20dp"
         android:text="number"
         android:textColor="#808080"
-        android:textSize="16sp"
+        android:textSize="21sp"
         app:layout_constraintStart_toStartOf="@+id/detail_Header"
         app:layout_constraintTop_toBottomOf="@+id/Systolic_view" />
 
     <TextView
+        android:textStyle="bold"
         android:id="@+id/Diastolic_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="diastolic"
+        android:text="Diastolic:"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/detail_Header"
         app:layout_constraintTop_toBottomOf="@+id/Systolic_view" />
 
@@ -107,18 +113,19 @@
         android:layout_marginLeft="20dp"
         android:text="number"
         android:textColor="#808080"
-        android:textSize="16sp"
+        android:textSize="21sp"
         app:layout_constraintStart_toStartOf="@+id/detail_Header"
         app:layout_constraintTop_toBottomOf="@+id/Diastolic_view" />
 
     <TextView
+        android:textStyle="bold"
         android:id="@+id/HeartRate_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="heart_rate"
+        android:text="Heart Rate:"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/detail_Header"
         app:layout_constraintTop_toBottomOf="@+id/Diastolic_view" />
 
@@ -130,18 +137,19 @@
         android:layout_marginLeft="20dp"
         android:text="number"
         android:textColor="#808080"
-        android:textSize="16sp"
+        android:textSize="21sp"
         app:layout_constraintStart_toStartOf="@+id/detail_Header"
         app:layout_constraintTop_toBottomOf="@+id/HeartRate_view" />
 
     <TextView
+        android:textStyle="bold"
         android:id="@+id/Comment_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="comment"
+        android:text="Comment:"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/detail_Header"
         app:layout_constraintTop_toBottomOf="@+id/HeartRate_view" />
 
@@ -154,7 +162,7 @@
         android:layout_marginRight="50dp"
         android:text="Comment"
         android:textColor="#808080"
-        android:textSize="16sp"
+        android:textSize="21sp"
         app:layout_constraintStart_toStartOf="@+id/detail_Header"
         app:layout_constraintTop_toBottomOf="@+id/Comment_view" />
     <FrameLayout
