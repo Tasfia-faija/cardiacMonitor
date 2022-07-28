@@ -35,6 +35,14 @@ public class  MainActivity extends AppCompatActivity {
     SharedPreferences.Editor editor;
     Gson gson;
 
+
+    /**
+     * Data Entry for the users and have
+     * a highlights in main page
+     * @param savedInstanceState
+     */
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +75,12 @@ public class  MainActivity extends AppCompatActivity {
 
             }
 
+            /**
+             * Delete button to delete data
+             * from main page list.
+             * @param position
+             */
+
             @Override
             public void onDeleteClick(int position) {
                 // dataArrayList.remove(position);
@@ -86,6 +100,10 @@ public class  MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Retrieve from Shared preference.
+     */
+
     private void readData()
     {
         sharedPreferences = getSharedPreferences("faija",MODE_PRIVATE);
@@ -99,6 +117,9 @@ public class  MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     *save the data
+     */
 
     private void writeData()
     {

@@ -25,6 +25,13 @@ public class AddActivity extends AppCompatActivity {
     String date, time, systolic, diastolic, heartrate, comment;
     Button save_button;
     CardiacModel cardiacModel;
+
+    /**
+     *  creating form where user give
+     *  input.
+     * @param savedInstanceState
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +45,13 @@ public class AddActivity extends AppCompatActivity {
         heartrate_input = findViewById(R.id.heartRateValue);
         comment_input = findViewById(R.id.commentValue);
         save_button = findViewById(R.id.addButton);
+
+        /**
+         * button for save the data to
+         * the database
+         */
+
+
         save_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,6 +81,10 @@ public class AddActivity extends AppCompatActivity {
         });
 
     }
+
+    /**
+     * add the data in shared preference given by users.
+     */
 
 
     public void inputFormat(){
@@ -119,8 +137,9 @@ public class AddActivity extends AppCompatActivity {
             }
         }
 
-
-
+    /**
+     * Save the data.
+     */
 
     private void writeData()
     {

@@ -7,7 +7,8 @@ import java.util.ArrayList;
 public class DataList {
     public static ArrayList<CardiacModel> array = new ArrayList<>();
     /**
-     *
+     * Add records for the main page list
+     * @param modelClass
      */
     public void addRecord(CardiacModel modelClass){
         if(array.contains(modelClass)){
@@ -17,6 +18,11 @@ public class DataList {
 
 
     }
+
+    /**
+     * delete records from the main page list.
+     * @param position
+     */
     public void deleteRecord(int position){
 
 
@@ -29,6 +35,11 @@ public class DataList {
 
 
     }
+
+    /**
+     * return array size
+     * @return array.size()
+     */
     public int  count(){
         return  array.size();
     }

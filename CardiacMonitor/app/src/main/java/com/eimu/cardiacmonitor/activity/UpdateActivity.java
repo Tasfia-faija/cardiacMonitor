@@ -29,6 +29,13 @@ public class UpdateActivity extends AppCompatActivity {
     Button update_button;
     CardiacModel cardiacModel;
 
+    /**
+     * Update the data from this page.
+     * Users can update their data by
+     * inserting new data in this page.
+     * @param savedInstanceState
+     */
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +86,10 @@ public class UpdateActivity extends AppCompatActivity {
         });
 
     }
+
+    /**
+     * retrieve data in the shared preference.
+     */
     private void readData()
     {
         sharedPreferences = getSharedPreferences("faija",MODE_PRIVATE);
@@ -92,6 +103,9 @@ public class UpdateActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * save data in the shared preference.
+     */
 
     private void writeData()
     {
