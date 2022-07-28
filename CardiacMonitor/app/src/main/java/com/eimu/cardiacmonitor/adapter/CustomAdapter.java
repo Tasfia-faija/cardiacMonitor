@@ -64,7 +64,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CardiacVie
             public void onClick(View v) {
                 if(customClickListener != null)
                 {
-                    int position = holder.getAdapterPosition();
+                    int position = holder.getAbsoluteAdapterPosition();
                     if(position != RecyclerView.NO_POSITION)
                     {
                         customClickListener.onDeleteClick(position);
