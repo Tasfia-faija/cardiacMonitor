@@ -41,6 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
         android:layout_marginEnd="30dp"
+        android:backgroundTint="@color/GhostWhite"
         android:layout_marginTop="5dp"
         android:background="@color/white"
         android:hint="dd-mm-yy"
@@ -64,6 +65,7 @@
 
     <EditText
         android:id="@+id/timeValue"
+        android:backgroundTint="@color/GhostWhite"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
@@ -95,6 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
         android:layout_marginEnd="30dp"
+        android:backgroundTint="@color/GhostWhite"
         android:layout_marginTop="5dp"
         android:background="@color/white"
         android:hint="number"
@@ -150,6 +153,7 @@
         android:layout_marginStart="38dp"
         android:layout_marginEnd="30dp"
         android:layout_marginTop="5dp"
+        android:backgroundTint="@color/GhostWhite"
         android:background="@color/white"
         android:hint="number"
         android:inputType="number"
@@ -175,10 +179,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="38dp"
+        android:backgroundTint="@color/WhiteSmoke"
         android:layout_marginEnd="30dp"
         android:layout_marginTop="5dp"
         android:background="@color/white"
-        android:backgroundTint="@color/white"
         android:hint="Comment"
         android:inputType="textMultiLine"
         android:padding="7dp"
@@ -196,7 +200,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/commentValue"
-        android:backgroundTint="#7A0D0D"
+        android:backgroundTint="@color/Green"
         android:layout_marginBottom="27dp"
         tools:ignore="MissingConstraints">
 
@@ -204,7 +208,7 @@
             android:id="@+id/addButton"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/cardview_light_background"
+            android:backgroundTint="@color/Green"
             android:text="Save"
             android:textSize="29sp" />
     </FrameLayout>

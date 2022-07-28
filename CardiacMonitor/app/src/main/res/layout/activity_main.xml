@@ -29,6 +29,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:rippleColor="#792BA3"
+        android:backgroundTint="@color/purple_200"
         app:srcCompat="@drawable/ic_baseline_add_circle_24"
         tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
