@@ -10,6 +10,10 @@ import android.view.WindowManager;
 
 import com.eimu.cardiacmonitor.R;
 
+/**
+ * App opening splash screen.
+ */
+
 public class SplashActivity extends AppCompatActivity {
 
     @Override

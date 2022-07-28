@@ -6,6 +6,19 @@ public class CardiacModel implements Serializable {
     public String date, time, systolic, diastolic, heartRate, comment;
     public long id;
     public CardiacModel() {
+
+        /**
+         * get input from users from the data entry page
+         * Users can give the necessary data to
+         * monitor them.
+         * @param date
+         * @param time
+         * @param systolic
+         * @param diastolic
+         * @param heartRate
+         * @param comment
+         */
+
         this.id = 0L;
         this.date = "";
         this.time = "";
@@ -15,13 +28,24 @@ public class CardiacModel implements Serializable {
         this.comment = "";
     }
 
+    /**
+     * get date from user
+     * @return
+     */
+
+
+
     public String getDate() {
         return date;
     }
+    /**
+     * get time
+     */
 
     public String getTime() {
         return time;
     }
+
 
     public String getSystolic() {
         return systolic;
@@ -39,6 +63,7 @@ public class CardiacModel implements Serializable {
         return comment;
     }
 
+
     public long getId() {
         return id;
     }
@@ -46,10 +71,18 @@ public class CardiacModel implements Serializable {
     public void setDate(String date) {
         this.date = date;
     }
+    /**
+     * set date
+     * @return
+     */
 
     public void setTime(String time) {
         this.time = time;
     }
+    /**
+     * set time
+     * @return
+     */
 
     public void setSystolic(String systolic) {
         this.systolic = systolic;
@@ -66,6 +99,10 @@ public class CardiacModel implements Serializable {
     public void setComment(String comment) {
         this.comment = comment;
     }
+    /**
+     * user can give comment.
+     * @return
+     */
 
     public void setId(long id) {
         this.id = id;
