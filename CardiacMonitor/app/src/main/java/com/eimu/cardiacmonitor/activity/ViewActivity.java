@@ -29,6 +29,12 @@ public class ViewActivity extends AppCompatActivity {
     CardiacModel cardiacModel;
     Button edit_button;
 
+    /**
+     * creating the form where details of the
+     * given data will show
+     * @param savedInstanceState
+     */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +85,11 @@ public class ViewActivity extends AppCompatActivity {
         }
 
     }
+
+    /**
+     * Data retrieve from shared preference
+     */
+
     private void readData()
     {
         sharedPreferences = getSharedPreferences("faija",MODE_PRIVATE);

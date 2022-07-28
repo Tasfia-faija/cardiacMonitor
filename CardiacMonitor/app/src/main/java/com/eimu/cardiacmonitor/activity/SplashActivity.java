@@ -15,7 +15,10 @@ import com.eimu.cardiacmonitor.R;
  */
 
 public class SplashActivity extends AppCompatActivity {
-
+    /**
+     * oncreate method for splash screen
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
